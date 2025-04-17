@@ -1,25 +1,22 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <title>Healthy Food - PawPal</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" />
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+  <meta charset="UTF-8">
+  <title>Healthy Pet Food - PawPal</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
   <style>
-    * {
+    body {
+      background-image: url('https://img.freepik.com/free-photo/pet-accessories-blue-background_23-2148887706.jpg');
+      background-size: cover;
+      background-attachment: fixed;
+      background-repeat: no-repeat;
+      background-position: center;
       margin: 0;
-      padding: 0;
-      box-sizing: border-box;
       font-family: 'Poppins', sans-serif;
     }
 
-    body {
-      background-color: #fffaf3;
-      color: #333;
-    }
-
     header {
-      background-color: #ffb347;
+      background-color: #a7d129;
       padding: 1em 2em;
       display: flex;
       justify-content: space-between;
@@ -41,27 +38,23 @@
     }
 
     nav a:hover {
-      color: #6b3e00;
+      color: #335300;
     }
 
     .hero {
-      background: url('https://www.kittywise.com/wp-content/uploads/2018/08/AdobeStock_188101331.jpeg') no-repeat center center/cover;
-      height: 60vh;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
+      background-size: cover;
+      background-position: center;
+      padding: 4em 2em;
       text-align: center;
       color: #fff;
-      padding: 2em;
-      box-shadow: inset 0 0 0 2000px rgba(0, 0, 0, 0.4);
+      background-image: url('https://media.istockphoto.com/id/1284251274/photo/dog-food-in-bowl.webp?b=1&s=170667a&w=0&k=20&c=4G-NDqT9mVKkWHQfr--x5hwHxFkVgmdwcnQ_KYHZ_1M=');
+      background-attachment: fixed;
     }
 
     .hero h2 {
       font-size: 3rem;
-      font-weight: 700;
-      text-shadow: 2px 2px 6px rgba(0,0,0,0.6);
       margin-bottom: 0.5em;
+      text-shadow: 2px 2px 6px rgba(0,0,0,0.6);
     }
 
     .hero p {
@@ -69,67 +62,56 @@
       text-shadow: 1px 1px 4px rgba(0,0,0,0.5);
     }
 
-    .food-section {
-      padding: 4em 2em;
-      text-align: center;
+    .product-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2em;
+      padding: 2em;
     }
 
-    .food-card {
-      background-color: #fff;
-      border-radius: 16px;
-      padding: 2em;
-      margin: 2em auto;
-      max-width: 850px;
-      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.08);
+    .product {
+      background-color: #f6ffe0;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      padding: 1.5em;
+      text-align: center;
       transition: transform 0.3s ease;
     }
 
-    .food-card:hover {
-      transform: translateY(-5px);
+    .product:hover {
+      transform: scale(1.05);
     }
 
-    .food-card img {
-      width: 100%;
-      border-radius: 12px;
+    .product img {
+      max-width: 100%;
+      height: 200px;
+      object-fit: contain;
       margin-bottom: 1em;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      border-radius: 8px;
     }
 
-    .food-card h3 {
-      margin-bottom: 0.5em;
-      font-size: 1.6rem;
-      color: #ff7f50;
+    .product h3 {
+      margin: 0.5em 0;
+      color: #88b300;
     }
 
-    .food-card p {
-      font-size: 1rem;
-      color: #555;
-      margin-bottom: 1em;
+    .product p {
+      color: #444;
     }
 
-    .food-card button {
-      background-color: #ffb347;
+    .product button {
+      margin-top: 1em;
+      background-color: #a7d129;
       color: white;
-      padding: 0.75em 1.5em;
-      font-size: 1rem;
+      padding: 0.5em 1.2em;
       border: none;
       border-radius: 8px;
       cursor: pointer;
       transition: background-color 0.3s ease;
     }
 
-    .food-card button:hover {
-      background-color: #ff9f1c;
-    }
-
-    .video-section {
-      margin-top: 3em;
-    }
-
-    iframe {
-      max-width: 100%;
-      border-radius: 10px;
-      height: 360px;
+    .product button:hover {
+      background-color: #8db600;
     }
 
     footer {
@@ -143,65 +125,37 @@
 </head>
 <body>
   <header>
-    <h1>PawPal</h1>
+    <h1>PawPal - Healthy Pet Food</h1>
     <nav>
       <a href="/">Home</a>
-      <a href="shop.html">Shop</a>
-      <a href="services.html">Services</a>
-      <a href="blog.html">Blog</a>
-      <a href="contact.html">Contact</a>
+      <a href="/shop">Shop</a>
+      <a href="/services">Services</a>
+      <a href="/blog">Blog</a>
+      <a href="/contact">Contact</a>
     </nav>
   </header>
 
   <section class="hero">
-    <h2>Healthy & Delicious Food for Your Pets</h2>
-    <p>Nutritious meals crafted to keep your furry friend fit and happy!</p>
+    <h2>Healthy Pet Food</h2>
+    <p>Nutritious meals for your beloved companions.</p>
   </section>
 
-  <main class="food-section">
-    <div class="food-card" data-aos="fade-up">
-      <img src="https://thumbs.dreamstime.com/b/dry-kibble-dog-food-metal-bowl-wooden-table-91819272.jpg" alt="Dry Dog Food">
-      <h3>Premium Dry Kibble</h3>
-      <p>High-protein, grain-free kibble made with real chicken and sweet potato. Great for all dog breeds.</p>
-      <button>Add to Cart - Rs. 500</button>
-    </div>
-
-    <div class="food-card" data-aos="fade-up" data-aos-delay="200">
-      <img src="https://hip2save.com/wp-content/uploads/2020/07/cat-eating-wet-cat-food.jpg?resize=1024%2C538&strip=all?w=700&strip=all" alt="Wet Cat Food">
-      <h3>Gourmet Wet Cat Meals</h3>
-      <p>Delicious tuna and salmon medley in gravy. Rich in omega-3 for shiny fur and healthy skin.</p>
-      <button>Add to Cart - Rs. 100</button>
-    </div>
-
-    <div class="food-card" data-aos="fade-up" data-aos-delay="400">
-      <img src="https://th.bing.com/th/id/OIP.TOTc_DOLDzEJYo5XLBkuoQHaHa?rs=1&pid=ImgDetMain" alt="Homemade Dog Meal">
-      <h3>Homestyle Dog Meals</h3>
-      <p>Human-grade ingredients slow cooked with veggies, rice, and lean meat. A wholesome dinner treat!</p>
-      <button>Add to Cart - Rs. 1000</button>
-    </div>
-
-    <div class="food-card" data-aos="fade-up" data-aos-delay="400">
-      <img src="https://http2.mlstatic.com/D_NQ_NP_871354-MLA43714550129_102020-F.jpg" alt="Puppy Food">
-      <h3>Starter Puppy Mix</h3>
-      <p>Nutritious formula specially developed for growing puppies of all breeds.</p>
-      <button>Add to Cart - Rs. 499</button>
-    </div>
-
-    <div class="food-card" data-aos="fade-up" data-aos-delay="400">
-      <img src="https://th.bing.com/th/id/OIP.IA7FxXY8mjlG-KKlfomMYQHaLZ?rs=1&pid=ImgDetMain" alt="Cat Treats">
-      <h3>Tuna Crunchies</h3>
-      <p>Crunchy and delicious tuna-flavored treats, enriched with vitamins and minerals.</p>
-      <button>Add to Cart - Rs. 199</button>
+  <main>
+    <div class="product-grid">
+      {% for product in food %}
+      <div class="product">
+        <img src="{{ product.image_url }}" alt="{{ product.name }}">
+        <h3>{{ product.name }}</h3>
+        <p>{{ product.description }}</p>
+        <p><strong>Rs. {{ product.price }}</strong></p>
+        <button>Add to Cart</button>
+      </div>
+      {% endfor %}
     </div>
   </main>
 
   <footer>
     <p>&copy; 2025 PawPal. All rights reserved.</p>
   </footer>
-
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
-  <script>
-    AOS.init();
-  </script>
 </body>
 </html>
