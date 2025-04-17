@@ -1,6 +1,9 @@
 # seed_data.py
-from app import app, db
-from models import toys, food
+
+from app import create_app, db
+from models import Toy, HealthyFood  # Correct model class names
+
+app = create_app()
 
 with app.app_context():
     db.create_all()
