@@ -1,10 +1,9 @@
-from flask import Blueprint, jsonify
+from flask import Blueprint, render_template
+from app.models import Product
 
 toys_bp = Blueprint('toys', __name__, url_prefix='/toys')
 
 @toys_bp.route('/')
-def toy_list():
-    return jsonify([
-        {"name": "Plush Chew Toy", "price": 300},
-        {"name": "Squeaky Bone", "price": 250}
-    ])
+def show_toys():
+    toys = Product.query.filter_by(category="Toys").all()
+    return render_template('toys.html', toys=toys)
