@@ -6,19 +6,67 @@
   <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
   <style>
     body {
-  background-image: url('https://www.rd.com/wp-content/uploads/2020/06/GettyImages-182190275.jpg'); /* Replace with actual path */
-  background-size: cover;
-  background-attachment: fixed;
-  background-repeat: no-repeat;
-  background-position: center;
-  }
+      background-image: url('https://www.rd.com/wp-content/uploads/2020/06/GettyImages-182190275.jpg');
+      background-size: cover;
+      background-attachment: fixed;
+      background-repeat: no-repeat;
+      background-position: center;
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    header {
+      background-color: #ffb347;
+      padding: 1em 2em;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+
+    header h1 {
+      color: #fff;
+      font-size: 1.8rem;
+    }
+
+    nav a {
+      margin-left: 1.5em;
+      text-decoration: none;
+      color: #fff;
+      font-weight: 600;
+      transition: color 0.3s ease;
+    }
+
+    nav a:hover {
+      color: #6b3e00;
+    }
+
+    .hero {
+      background-size: cover;
+      background-position: center;
+      padding: 4em 2em;
+      text-align: center;
+      color: #fff;
+      background-image: url('https://images.unsplash.com/photo-1601758123927-1964b8310b6f');
+      background-attachment: fixed;
+    }
+
+    .hero h2 {
+      font-size: 3rem;
+      margin-bottom: 0.5em;
+      text-shadow: 2px 2px 6px rgba(0,0,0,0.6);
+    }
+
+    .hero p {
+      font-size: 1.2rem;
+      text-shadow: 1px 1px 4px rgba(0,0,0,0.5);
+    }
 
     .product-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
       gap: 2em;
       padding: 2em;
-      animation: fadeIn 1.5s ease-in-out;
     }
 
     .product {
@@ -39,10 +87,12 @@
       height: 200px;
       object-fit: contain;
       margin-bottom: 1em;
+      border-radius: 8px;
     }
 
     .product h3 {
       margin: 0.5em 0;
+      color: #ff7f50;
     }
 
     .product p {
@@ -64,9 +114,12 @@
       background-color: #ff7a26;
     }
 
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(30px); }
-      to { opacity: 1; transform: translateY(0); }
+    footer {
+      text-align: center;
+      padding: 1.5em;
+      background-color: #333;
+      color: #fff;
+      margin-top: 3em;
     }
   </style>
 </head>
@@ -75,48 +128,29 @@
     <h1>PawPal - Toys & Treats</h1>
     <nav>
       <a href="/">Home</a>
-      <a href="shop.html">Shop</a>
-      <a href="services.html">Services</a>
-      <a href="blog.html">Blog</a>
-      <a href="contact.html">Contact</a>
+      <a href="/shop">Shop</a>
+      <a href="/services">Services</a>
+      <a href="/blog">Blog</a>
+      <a href="/contact">Contact</a>
     </nav>
   </header>
 
-  <section class="hero" style="background-image: url('https://images.unsplash.com/photo-1601758123927-1964b8310b6f');">
+  <section class="hero">
     <h2>Toys & Treats</h2>
     <p>Fun, safe, and tasty surprises your furry friends will love!</p>
   </section>
 
   <main>
     <div class="product-grid">
+      {% for product in toys %}
       <div class="product">
-        <img src="https://i5.walmartimages.com/asr/1799388e-fbb9-430a-9eb6-1fea2e7848ef_1.9625af5a5c028241f2aa454c0c2bfac0.jpeg?odnHeight=450&odnWidth=450&odnBg=ffffff" alt="Squeaky Bone Toy">
-        <h3>Squeaky Bone Toy</h3>
-        <p>Made with durable rubber, ideal for long play hours!</p>
-        <p><strong>Rs.300</strong></p>
+        <img src="{{ product.image_url }}" alt="{{ product.name }}">
+        <h3>{{ product.name }}</h3>
+        <p>{{ product.description }}</p>
+        <p><strong>Rs. {{ product.price }}</strong></p>
         <button>Add to Cart</button>
       </div>
-      <div class="product">
-        <img src="https://img.buzzfeed.com/buzzfeed-static/static/2021-12/9/19/asset/03eb6ce1bc83/sub-buzz-4574-1639077087-10.jpg" alt="Plush Chew Toy">
-        <h3>Plush Chew Toy</h3>
-        <p>Soft, cute, and comforting—perfect for puppies.</p>
-        <p><strong>Rs.250</strong></p>
-        <button>Add to Cart</button>
-      </div>
-      <div class="product">
-        <img src="https://m.media-amazon.com/images/I/715K55Bv3BL._AC_SL1500_.jpg" alt="Catnip Ball">
-        <h3>Catnip Ball</h3>
-        <p>Organic catnip-filled ball to keep your kitty entertained!</p>
-        <p><strong>Rs.350</strong></p>
-        <button>Add to Cart</button>
-      </div>
-      <div class="product">
-        <img src="https://i5.walmartimages.com/asr/104f0791-02c4-4ba6-b5fd-64ee9bee9d50_1.4c656d194183b087ca4556da7669d921.jpeg" alt="Three Tier Cat Tower">
-        <h3>Three Tier Cat Tower</h3>
-        <p>Let's the cat enjoy more</p>
-        <p><strong>Rs.500</strong></p>
-        <button>Add to Cart</button>
-      </div>
+      {% endfor %}
     </div>
   </main>
 
