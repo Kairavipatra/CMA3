@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Secure Payment Page for PawPal">
+    <title>PawPal - Payment</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="scripts.js" defer></script>
+    <link rel="icon" href="assets/favicon.ico">
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <header>
+        <nav>
+            <div class="logo">
+                <a href="#">PawPal</a>
+            </div>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#shop">Shop</a></li>
+                <li><a href="#cart">Cart</a></li>
+                <li><a href="#profile">Profile</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Payment Section -->
+    <section id="payment-section">
+        <div class="payment-container">
+            <h1>Complete Your Purchase</h1>
+            <p>Please enter your payment details below to complete your order.</p>
+            
+            <!-- Payment Form -->
+            <form action="/process-payment" method="POST">
+                <!-- Billing Address -->
+                <fieldset>
+                    <legend>Billing Information</legend>
+                    <label for="first-name">First Name:</label>
+                    <input type="text" id="first-name" name="first-name" required>
+
+                    <label for="last-name">Last Name:</label>
+                    <input type="text" id="last-name" name="last-name" required>
+
+                    <label for="address">Address:</label>
+                    <input type="text" id="address" name="address" required>
+
+                    <label for="city">City:</label>
+                    <input type="text" id="city" name="city" required>
+
+                    <label for="zip-code">Zip Code:</label>
+                    <input type="text" id="zip-code" name="zip-code" required>
+                </fieldset>
+
+                <!-- Payment Details -->
+                <fieldset>
+                    <legend>Payment Information</legend>
+                    <label for="card-number">Credit Card Number:</label>
+                    <input type="text" id="card-number" name="card-number" placeholder="1234 5678 1234 5678" required>
+
+                    <label for="expiration-date">Expiration Date:</label>
+                    <input type="month" id="expiration-date" name="expiration-date" required>
+
+                    <label for="cvv">CVV:</label>
+                    <input type="text" id="cvv" name="cvv" placeholder="123" required>
+
+                    <label for="cardholder-name">Cardholder Name:</label>
+                    <input type="text" id="cardholder-name" name="cardholder-name" required>
+                </fieldset>
+
+                <!-- Order Summary -->
+                <fieldset>
+                    <legend>Order Summary</legend>
+                    <p>Items: <span id="order-items">3</span></p>
+                    <p>Total Price: <span id="total-price">$59.99</span></p>
+                </fieldset>
+
+                <!-- Submit Button -->
+                <button type="submit" class="cta-button">Complete Payment</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-links">
+            <a href="privacy-policy.html">Privacy Policy</a>
+            <a href="terms-conditions.html">Terms & Conditions</a>
+            <a href="contact-us.html">Contact Us</a>
+        </div>
+        <p>&copy; 2025 PawPal. All rights reserved.</p>
+    </footer>
+</body>
+</html>
