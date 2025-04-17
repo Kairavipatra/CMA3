@@ -1,8 +1,11 @@
 from . import db
 from flask_login import UserMixin
 from werkzeug.security import generate_password_hash, check_password_hash
+from datetime import datetime
 
 class User(db.Model, UserMixin):
+    __tablename__ = 'users'
+    
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(80), unique=True, nullable=False)
     password = db.Column(db.String(120), nullable=False)
@@ -15,20 +18,19 @@ class User(db.Model, UserMixin):
         """Checks if the provided password matches the hashed password."""
         return check_password_hash(self.password, password)
 
-    # Optional: This method is automatically provided by UserMixin
-    # def get_id(self):
-    #     return str(self.id)
+    def __repr__(self):
+        return f'<User {self.username}>'
+
 
 class Product(db.Model):
+    __tablename__ = 'products'
+    
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(100), nullable=False)
-    description = db.Column(db.String(300), nullable=True)
+    description = db.Column(db.String(300))
     price = db.Column(db.Float, nullable=False)
-    category = db.Column(db.String(50), nullable=False)  # "Food" or "Toys"
+    category = db.Column(db.String(50), nullable=False)  # e.g., "Food", "Toys"
+    created_at = db.Column(db.DateTime, default=datetime.utcnow)
 
     def __repr__(self):
-        return f'<Product {self.name}>'
-
-  
-  
-
+        return f'<Product {self.name} ({self.category})>'
