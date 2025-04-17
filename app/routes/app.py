@@ -1,5 +1,7 @@
 from flask import Blueprint, render_template
+from app import app_bp  # This will raise ImportError unless you rename the file. See below.
 
+app = Flask(__name__)
 app_bp = Blueprint('app', __name__)
 
 @app_bp.route('/')
