@@ -1,6 +1,6 @@
 # seed_data.py
 from app import app, db
-from models import Toy, HealthyFood
+from models import toys, food
 
 with app.app_context():
     db.create_all()
