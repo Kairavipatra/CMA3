@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Grooming Services - PawPal</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<script>
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    });
+  
+    document.querySelectorAll('.product, .service, .feature, .service-detail, article').forEach(el => {
+      observer.observe(el);
+    });
+  </script>
+  
+<body>
+  <header>
+    <h1>PawPal</h1>
+    <nav>
+      <a href="/">Home</a>
+      <a href="shop.html">Shop</a>
+      <a href="services.html">Services</a>
+      <a href="blog.html">Blog</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="grooming-section" id="grooming">
+      <div class="grooming-container">
+        <div class="grooming-image" data-aos="fade-right">
+          <img src="https://lovebeverlyhills.com/uploads/cache/Image/BlockFeaturedBlock/id/2933/2b7890476c3038a415f0678b86bb49b7c3c1a50b.jpg" alt="Pet Grooming" />
+        </div>
+        <div class="grooming-text" data-aos="fade-left">
+          <h2>Professional Grooming for Your Pet</h2>
+          <p>We provide full grooming packages including bathing, nail trimming, ear cleaning, and stylish cuts tailored for your pet.</p>
+          
+          <h3>Why Choose Us?</h3>
+          <ul class="grooming-benefits">
+            <li>🐾 Certified pet groomers</li>
+            <li>🌿 Comfort-first environment</li>
+            <li>✂️ Customized grooming styles</li>
+          </ul>
+    
+          <a href="#appointment" class="book-btn">Book an Appointment</a>
+        </div>
+      </div>
+    
+      <div class="grooming-types" data-aos="fade-up">
+        <h2>Our Grooming Services</h2>
+        <div class="grooming-card">
+          <img src="https://i.pinimg.com/originals/64/1c/d7/641cd78016b36e9443a43f18094ff581.jpg" alt="Dog Grooming" />
+          <h4>Dog Grooming</h4>
+          <p>Includes wash, blow dry, nail trimming, ear cleaning, and coat styling.</p>
+        </div>
+        <div class="grooming-card">
+          <img src="https://images.pexels.com/photos/6816855/pexels-photo-6816855.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="Cat Grooming" />
+          <h4>Cat Grooming</h4>
+          <p>Brushing, mat removal, gentle bathing, and more – all done by trained professionals.</p>
+        </div>
+      </div>
+    </section>    
+      
+  </main>
+
+  <footer>
+    <p>&copy; 2025 PawPal. All rights reserved.</p>
+  </footer>
+</body>
+</html>

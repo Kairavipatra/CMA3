@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Healthy Food - PawPal</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    body {
+      background-color: #fffaf3;
+      color: #333;
+    }
+
+    header {
+      background-color: #ffb347;
+      padding: 1em 2em;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+
+    header h1 {
+      color: #fff;
+      font-size: 1.8rem;
+    }
+
+    nav a {
+      margin-left: 1.5em;
+      text-decoration: none;
+      color: #fff;
+      font-weight: 600;
+      transition: color 0.3s ease;
+    }
+
+    nav a:hover {
+      color: #6b3e00;
+    }
+
+    .hero {
+      background: url('https://www.kittywise.com/wp-content/uploads/2018/08/AdobeStock_188101331.jpeg') no-repeat center center/cover;
+      height: 60vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      color: #fff;
+      padding: 2em;
+      box-shadow: inset 0 0 0 2000px rgba(0, 0, 0, 0.4);
+    }
+
+    .hero h2 {
+      font-size: 3rem;
+      font-weight: 700;
+      text-shadow: 2px 2px 6px rgba(0,0,0,0.6);
+      margin-bottom: 0.5em;
+    }
+
+    .hero p {
+      font-size: 1.2rem;
+      text-shadow: 1px 1px 4px rgba(0,0,0,0.5);
+    }
+
+    .food-section {
+      padding: 4em 2em;
+      text-align: center;
+    }
+
+    .food-card {
+      background-color: #fff;
+      border-radius: 16px;
+      padding: 2em;
+      margin: 2em auto;
+      max-width: 850px;
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.08);
+      transition: transform 0.3s ease;
+    }
+
+    .food-card:hover {
+      transform: translateY(-5px);
+    }
+
+    .food-card img {
+      width: 100%;
+      border-radius: 12px;
+      margin-bottom: 1em;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
+
+    .food-card h3 {
+      margin-bottom: 0.5em;
+      font-size: 1.6rem;
+      color: #ff7f50;
+    }
+
+    .food-card p {
+      font-size: 1rem;
+      color: #555;
+      margin-bottom: 1em;
+    }
+
+    .food-card button {
+      background-color: #ffb347;
+      color: white;
+      padding: 0.75em 1.5em;
+      font-size: 1rem;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .food-card button:hover {
+      background-color: #ff9f1c;
+    }
+
+    .video-section {
+      margin-top: 3em;
+    }
+
+    iframe {
+      max-width: 100%;
+      border-radius: 10px;
+      height: 360px;
+    }
+
+    footer {
+      text-align: center;
+      padding: 1.5em;
+      background-color: #333;
+      color: #fff;
+      margin-top: 3em;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>PawPal</h1>
+    <nav>
+      <a href="/">Home</a>
+      <a href="shop.html">Shop</a>
+      <a href="services.html">Services</a>
+      <a href="blog.html">Blog</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <h2>Healthy & Delicious Food for Your Pets</h2>
+    <p>Nutritious meals crafted to keep your furry friend fit and happy!</p>
+  </section>
+
+  <main class="food-section">
+    <div class="food-card" data-aos="fade-up">
+      <img src="https://thumbs.dreamstime.com/b/dry-kibble-dog-food-metal-bowl-wooden-table-91819272.jpg" alt="Dry Dog Food">
+      <h3>Premium Dry Kibble</h3>
+      <p>High-protein, grain-free kibble made with real chicken and sweet potato. Great for all dog breeds.</p>
+      <button>Add to Cart - Rs. 500</button>
+    </div>
+
+    <div class="food-card" data-aos="fade-up" data-aos-delay="200">
+      <img src="https://hip2save.com/wp-content/uploads/2020/07/cat-eating-wet-cat-food.jpg?resize=1024%2C538&strip=all?w=700&strip=all" alt="Wet Cat Food">
+      <h3>Gourmet Wet Cat Meals</h3>
+      <p>Delicious tuna and salmon medley in gravy. Rich in omega-3 for shiny fur and healthy skin.</p>
+      <button>Add to Cart - Rs. 100</button>
+    </div>
+
+    <div class="food-card" data-aos="fade-up" data-aos-delay="400">
+      <img src="https://th.bing.com/th/id/OIP.TOTc_DOLDzEJYo5XLBkuoQHaHa?rs=1&pid=ImgDetMain" alt="Homemade Dog Meal">
+      <h3>Homestyle Dog Meals</h3>
+      <p>Human-grade ingredients slow cooked with veggies, rice, and lean meat. A wholesome dinner treat!</p>
+      <button>Add to Cart - Rs. 1000</button>
+    </div>
+
+    <div class="food-card" data-aos="fade-up" data-aos-delay="400">
+      <img src="https://http2.mlstatic.com/D_NQ_NP_871354-MLA43714550129_102020-F.jpg" alt="Puppy Food">
+      <h3>Starter Puppy Mix</h3>
+      <p>Nutritious formula specially developed for growing puppies of all breeds.</p>
+      <button>Add to Cart - Rs. 499</button>
+    </div>
+
+    <div class="food-card" data-aos="fade-up" data-aos-delay="400">
+      <img src="https://th.bing.com/th/id/OIP.IA7FxXY8mjlG-KKlfomMYQHaLZ?rs=1&pid=ImgDetMain" alt="Cat Treats">
+      <h3>Tuna Crunchies</h3>
+      <p>Crunchy and delicious tuna-flavored treats, enriched with vitamins and minerals.</p>
+      <button>Add to Cart - Rs. 199</button>
+    </div>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 PawPal. All rights reserved.</p>
+  </footer>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+  <script>
+    AOS.init();
+  </script>
+</body>
+</html>
