@@ -45,7 +45,7 @@ def create_app():
     login_manager.init_app(app)
 
     # Import models here (avoid circular imports)
-   from app.models import User, Product, Toy, HealthyFood
+    from app.models import User, Product, Toy, HealthyFood
 
     @login_manager.user_loader
     def load_user(user_id):
