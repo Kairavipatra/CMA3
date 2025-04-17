@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>PawPal - Home</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" />
+</head>
+<body>
+  <header>
+    <h1>PawPal</h1>
+    <nav>
+      <a href="/">Home</a>
+      <a href="shop.html">Shop</a>
+      <a href="services.html">Services</a>
+      <a href="blog.html">Blog</a>
+      <a href="contact.html">Contact</a>
+      <a href="/admin">Admin Panel</a>
+      {% if current_user.is_authenticated %}
+        <a href="{{ url_for('auth.logout') }}">Logout ({{ current_user.username }})</a>
+      {% endif %}
+    </nav>
+  </header>
+
+  <!-- Flash messages -->
+  {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+      <div class="flash-messages" style="text-align:center; margin: 1em auto;">
+        {% for category, message in messages %}
+          <div style="
+            display: inline-block;
+            padding: 0.7em 1.2em;
+            margin: 0.5em;
+            border-radius: 8px;
+            background-color:
+              {% if category == 'success' %}#38d9a9
+              {% elif category == 'error' %}#ff6b6b
+              {% else %}#ffd43b
+              {% endif %};
+            color: white;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+          ">
+            {{ message }}
+          </div>
+        {% endfor %}
+      </div>
+    {% endif %}
+  {% endwith %}
+
+  <!-- Hero Section -->
+  <section class="hero-banner" data-aos="fade-up">
+    <div class="overlay">
+      <h1 class="hero-title">Your One-Stop-Shop for Pet Happiness 🐾🐾</h1>
+      <p class="hero-subtitle">
+        From toys and treats to grooming and vet care, we've got everything your furry friend needs.
+      </p>
+      <div class="hero-buttons" data-aos="zoom-in">
+        <a href="shop.html" class="hero-btn shop-btn">Shop Now</a>
+        <a href="services.html" class="hero-btn explore-btn">Explore Services</a>
+      </div>
+    </div>
+  </section>
+
+  <style>
+    .hero-buttons {
+      margin-top: 20px;
+    }
+    .hero-btn {
+      display: inline-block;
+      padding: 12px 24px;
+      font-size: 1rem;
+      font-weight: 600;
+      border-radius: 30px;
+      text-decoration: none;
+      margin: 0 10px;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    }
+    .shop-btn {
+      background: linear-gradient(45deg, #ff6b6b, #f06595);
+      color: white;
+    }
+    .explore-btn {
+      background: linear-gradient(45deg, #4dabf7, #339af0);
+      color: white;
+    }
+    .hero-btn:hover {
+      transform: scale(1.05);
+      box-shadow: 0 6px 12px rgba(0,0,0,0.3);
+      opacity: 0.9;
+    }
+  </style>
+
+ <section class="features">
+    <div class="feature" data-aos="fade-up">
+      <img src="https://cdn-icons-png.flaticon.com/512/616/616408.png" alt="Toys">
+      <h3>Toys & Treats</h3>
+      <p>High-quality toys and delicious treats to keep your pet active and happy.</p>
+      <a href="toys.html" class="card-btn orange-btn">Explore</a>
+    </div>
+  
+    <div class="feature" data-aos="fade-up" data-aos-delay="100">
+      <img src="https://cdn-icons-png.flaticon.com/512/616/616430.png" alt="Grooming">
+      <h3>Grooming Services</h3>
+      <p>Pamper your pet with our top-notch grooming sessions.</p>
+      <a href="grooming.html" class="card-btn pink-btn">Book Now</a>
+    </div>
+  
+    <div class="feature" data-aos="fade-up" data-aos-delay="200">
+      <img src="https://cdn-icons-png.flaticon.com/512/616/616408.png" alt="Healthy Food">
+      <h3>Healthy Food</h3>
+      <p>Nutritious food options tailored for your pet’s needs.</p>
+      <a href="food.html" class="card-btn green-btn">Check Menu</a>
+    </div>
+  
+    <div class="feature" data-aos="fade-up" data-aos-delay="300">
+      <img src="https://cdn-icons-png.flaticon.com/512/616/616408.png" alt="Vet">
+      <h3>Vet Appointments</h3>
+      <p>Book quick and easy appointments with trusted veterinarians.</p>
+      <a href="vet.html" class="card-btn blue-btn">Book Visit</a>
+    </div>
+  </section>
+  
+  <!-- Add this CSS to your <style> or CSS file -->
+  <style>
+    .card-btn {
+      display: inline-block;
+      margin-top: 15px;
+      padding: 10px 20px;
+      font-size: 0.95rem;
+      font-weight: 600;
+      border-radius: 20px;
+      text-decoration: none;
+      color: white;
+      transition: all 0.3s ease;
+      box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15);
+    }
+  
+    .card-btn:hover {
+      transform: translateY(-3px) scale(1.05);
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+      opacity: 0.95;
+    }
+  
+    .orange-btn {
+      background: linear-gradient(45deg, #ffa94d, #ff922b);
+    }
+  
+    .pink-btn {
+      background: linear-gradient(45deg, #ff6b6b, #f06595);
+    }
+  
+    .green-btn {
+      background: linear-gradient(45deg, #69db7c, #38d9a9);
+    }
+  
+    .blue-btn {
+      background: linear-gradient(45deg, #4dabf7, #339af0);
+    }
+  </style>
+  
+  <section class="services-table" data-aos="fade-up">
+    <h2>Popular Services</h2>
+    <div class="service-row">
+      <span>Vet Appointment</span>
+      <span>₹500</span>
+      <button>Book Now</button>
+    </div>
+    <hr />
+    <div class="service-row">
+      <span>Pet Grooming</span>
+      <span>₹600</span>
+      <button>Book Now</button>
+    </div>
+    <hr />
+    <div class="service-row">
+      <span>Dog Walking</span>
+      <span>₹200</span>
+      <button>Book Now</button>
+    </div>
+    <hr />
+  </section>
+  
+
+  <section class="video-section" data-aos="zoom-in">
+    <h2>See PawPal in Action</h2>
+    <video controls autoplay muted loop>
+      <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4" />
+      Your browser does not support the video tag.
+    </video>
+  </section>
+
+
+  <!-- Login and Signup -->
+  <section class="login-signup" style="padding: 2em; background: #fffaf3; text-align: center;">
+    <h2>Join the PawPal Family</h2>
+    <p>Sign up to book appointments, order toys, and manage your pet's services!</p>
+
+    <div style="display: flex; justify-content: center; gap: 2em; flex-wrap: wrap; margin-top: 1em;">
+      <form action="/auth/signup" method="POST" style="background: white; padding: 1.5em; border-radius: 12px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); width: 300px;">
+        <h3>Sign Up</h3>
+        <input type="text" name="username" placeholder="Username" required style="width: 100%; margin: 0.5em 0; padding: 0.6em;">
+        <input type="password" name="password" placeholder="Password" required style="width: 100%; margin: 0.5em 0; padding: 0.6em;">
+        <button type="submit" style="background-color: #f08142; color: white; border: none; padding: 0.7em 1.5em; border-radius: 6px;">Sign Up</button>
+      </form>
+
+      <form action="/auth/login" method="POST" style="background: white; padding: 1.5em; border-radius: 12px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); width: 300px;">
+        <h3>Login</h3>
+        <input type="text" name="username" placeholder="Username" required style="width: 100%; margin: 0.5em 0; padding: 0.6em;">
+        <input type="password" name="password" placeholder="Password" required style="width: 100%; margin: 0.5em 0; padding: 0.6em;">
+        <button type="submit" style="background-color: #f08142; color: white; border: none; padding: 0.7em 1.5em; border-radius: 6px;">Login</button>
+      </form>
+    </div>
+  </section>
+
+  <footer>
+    <p>&copy; 2025 PawPal. All rights reserved.</p>
+  </footer>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+  <script>AOS.init();</script>
+  <script src="{{ url_for('static', filename='js/app.js') }}"></script>
+</body>
+</html>

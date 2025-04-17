@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Toys & Treats - PawPal</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+  <style>
+    body {
+  background-image: url('https://www.rd.com/wp-content/uploads/2020/06/GettyImages-182190275.jpg'); /* Replace with actual path */
+  background-size: cover;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  background-position: center;
+  }
+
+    .product-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2em;
+      padding: 2em;
+      animation: fadeIn 1.5s ease-in-out;
+    }
+
+    .product {
+      background-color: #fff3e6;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      padding: 1.5em;
+      text-align: center;
+      transition: transform 0.3s ease;
+    }
+
+    .product:hover {
+      transform: scale(1.05);
+    }
+
+    .product img {
+      max-width: 100%;
+      height: 200px;
+      object-fit: contain;
+      margin-bottom: 1em;
+    }
+
+    .product h3 {
+      margin: 0.5em 0;
+    }
+
+    .product p {
+      color: #555;
+    }
+
+    .product button {
+      margin-top: 1em;
+      background-color: #ff914d;
+      color: white;
+      padding: 0.5em 1.2em;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .product button:hover {
+      background-color: #ff7a26;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>PawPal - Toys & Treats</h1>
+    <nav>
+      <a href="/">Home</a>
+      <a href="shop.html">Shop</a>
+      <a href="services.html">Services</a>
+      <a href="blog.html">Blog</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+  </header>
+
+  <section class="hero" style="background-image: url('https://images.unsplash.com/photo-1601758123927-1964b8310b6f');">
+    <h2>Toys & Treats</h2>
+    <p>Fun, safe, and tasty surprises your furry friends will love!</p>
+  </section>
+
+  <main>
+    <div class="product-grid">
+      <div class="product">
+        <img src="https://i5.walmartimages.com/asr/1799388e-fbb9-430a-9eb6-1fea2e7848ef_1.9625af5a5c028241f2aa454c0c2bfac0.jpeg?odnHeight=450&odnWidth=450&odnBg=ffffff" alt="Squeaky Bone Toy">
+        <h3>Squeaky Bone Toy</h3>
+        <p>Made with durable rubber, ideal for long play hours!</p>
+        <p><strong>Rs.300</strong></p>
+        <button>Add to Cart</button>
+      </div>
+      <div class="product">
+        <img src="https://img.buzzfeed.com/buzzfeed-static/static/2021-12/9/19/asset/03eb6ce1bc83/sub-buzz-4574-1639077087-10.jpg" alt="Plush Chew Toy">
+        <h3>Plush Chew Toy</h3>
+        <p>Soft, cute, and comforting—perfect for puppies.</p>
+        <p><strong>Rs.250</strong></p>
+        <button>Add to Cart</button>
+      </div>
+      <div class="product">
+        <img src="https://m.media-amazon.com/images/I/715K55Bv3BL._AC_SL1500_.jpg" alt="Catnip Ball">
+        <h3>Catnip Ball</h3>
+        <p>Organic catnip-filled ball to keep your kitty entertained!</p>
+        <p><strong>Rs.350</strong></p>
+        <button>Add to Cart</button>
+      </div>
+      <div class="product">
+        <img src="https://i5.walmartimages.com/asr/104f0791-02c4-4ba6-b5fd-64ee9bee9d50_1.4c656d194183b087ca4556da7669d921.jpeg" alt="Three Tier Cat Tower">
+        <h3>Three Tier Cat Tower</h3>
+        <p>Let's the cat enjoy more</p>
+        <p><strong>Rs.500</strong></p>
+        <button>Add to Cart</button>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 PawPal. All rights reserved.</p>
+  </footer>
+</body>
+</html>
