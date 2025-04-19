@@ -1,4 +1,8 @@
 from flask import Flask, Blueprint, render_template
+from flask_sqlalchemy import SQLAlchemy
+from flask_migrate import Migrate, upgrade
+
+db = SQLAlchemy()
 
 app_bp = Blueprint('app', __name__)
 
@@ -42,13 +46,17 @@ def toys():
 def vet():
     return render_template('vet.html')
 
-# ✅ Create and register the Flask app
+# ✅ Create the Flask app
 app = Flask(__name__)
+app.config.from_object('config.Config')  # Make sure your config points to PostgreSQL
+
+db.init_app(app)
+migrate = Migrate(app, db)
+
 app.register_blueprint(app_bp)
+
+# ✅ Apply migrations at startup (works on free Render plan)
 if __name__ == '__main__':
     with app.app_context():
-        db.create_all()
+        upgrade()  # This runs "flask db upgrade"
     app.run(debug=True)
-    
-
-
