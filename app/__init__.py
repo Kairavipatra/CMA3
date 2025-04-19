@@ -1,19 +1,3 @@
-#from flask import Flask
-
-#def create_app():
- #   app = Flask(__name__)
-  #  app.secret_key = 'supersecretkey'  # for session & forms
-
-   # from app.routes import auth, products, appointments, dog_walking, toys
-
-    #app.register_blueprint(auth.bp)
-    #app.register_blueprint(products.bp)
-    #app.register_blueprint(appointments.bp)
-    #app.register_blueprint(dog_walking.bp)
-    #app.register_blueprint(toys.bp)
-
-    #return app
-
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from flask_admin import Admin
@@ -26,45 +10,42 @@ db = SQLAlchemy()
 admin = Admin(name='PawPal Admin', template_mode='bootstrap3')
 login_manager = LoginManager()
 
+
 def create_app():
     app = Flask(__name__)
-
-    # Secret key for session management
     app.config['SECRET_KEY'] = 'your_secret_key_here'
-
-    # Database configuration: Render Postgres URL from environment variable
-    app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv(
-        'DATABASE_URL',  # Retrieves the DATABASE_URL environment variable
-        'sqlite:///pawpal.db')  # Fallback to SQLite if DATABASE_URL isn't set
-    
+    app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv('DATABASE_URL', 'sqlite:///pawpal.db')
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
-    # Initialize extensions
     db.init_app(app)
     admin.init_app(app)
     login_manager.init_app(app)
 
-    # Import models here (avoid circular imports)
+    # Models
     from app.models import User, Product, Toy, HealthyFood
 
     @login_manager.user_loader
     def load_user(user_id):
         return User.query.get(int(user_id))
 
-    # Register blueprints
-    from app.routes import app as app_routes
-    from app.routes import auth, products, appointments, dog_walking, toys
+    # ✅ Import blueprints directly, not modules
+    from app.routes.auth import auth_bp
+    from app.routes.products import products_bp
+    from app.routes.appointments import appointments_bp
+    from app.routes.dog_walking import dog_walking_bp
+    from app.routes.toys import toys_bp
+    from app.routes.main import app_bp  # Assuming your main routes are here
 
-    app.register_blueprint(app_routes.app_bp)
-    app.register_blueprint(auth.auth_bp)
-    app.register_blueprint(products.products_bp)
-    app.register_blueprint(appointments.appointments_bp)
-    app.register_blueprint(dog_walking.dog_walking_bp)
-    app.register_blueprint(toys.toys_bp)
+    # ✅ Register blueprints
+    app.register_blueprint(auth_bp)
+    app.register_blueprint(products_bp)
+    app.register_blueprint(appointments_bp)
+    app.register_blueprint(dog_walking_bp)
+    app.register_blueprint(toys_bp)
+    app.register_blueprint(app_bp)
 
-    # Register models for Flask-Admin
+    # Flask-Admin views
     admin.add_view(ModelView(User, db.session))
     admin.add_view(ModelView(Product, db.session))
 
     return app
-
