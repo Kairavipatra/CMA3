@@ -16,13 +16,14 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_admin import Admin, AdminIndexView
 from flask_admin.contrib.sqla import ModelView
 from flask_login import LoginManager, current_user
-from flask_migrate import Migrate  # Optional: for handling migrations
+from flask_migrate import Migrate  # ✅ Flask-Migrate
 import os
 
 # Initialize extensions
 db = SQLAlchemy()
 login_manager = LoginManager()
 admin = Admin(name='PawPal Admin', template_mode='bootstrap3')
+migrate = Migrate()  # ✅ Initialize migrate instance here
 
 
 # Custom Admin Home View (restrict access to logged-in users)
@@ -56,7 +57,7 @@ def create_app():
     # Initialize extensions
     db.init_app(app)
     login_manager.init_app(app)
-    Migrate(app, db)  # Optional: only if using Flask-Migrate for migrations
+    migrate.init_app(app, db)  # ✅ Properly init Flask-Migrate with app and db
 
     # User loader for Flask-Login
     from app.models import User  # Avoid circular imports
@@ -86,5 +87,6 @@ def create_app():
     app.register_blueprint(toys.toys_bp)
 
     return app
+
 
 
