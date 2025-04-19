@@ -3,8 +3,8 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_admin import Admin
 from flask_admin.contrib.sqla import ModelView
 from flask_login import LoginManager
-from flask_migrate import Migrate  # ✅ NEW IMPORT
-from config import Config  # Import Config class
+from flask_migrate import Migrate
+from config import Config
 
 # Initialize extensions
 db = SQLAlchemy()
@@ -19,7 +19,7 @@ def create_app():
 
     # Initialize extensions
     db.init_app(app)
-    migrate = Migrate(app, db)  # ✅ ADD THIS
+    migrate = Migrate(app, db)
     admin.init_app(app)
     login_manager.init_app(app)
 
@@ -32,7 +32,7 @@ def create_app():
 
     # Register blueprints
     from app.routes import app as app_routes
-    from app.routes import auth, products, appointments, dog_walking, toys
+    from app.routes import auth, products, appointments, dog_walking, toys, foster_care  # <-- Added foster_care
 
     app.register_blueprint(app_routes.app_bp)
     app.register_blueprint(auth.auth_bp)
@@ -40,6 +40,7 @@ def create_app():
     app.register_blueprint(appointments.appointments_bp)
     app.register_blueprint(dog_walking.dog_walking_bp)
     app.register_blueprint(toys.toys_bp)
+    app.register_blueprint(foster_care.foster_care_bp)  # <-- Register the foster_care blueprint
 
     # Register models for Flask-Admin
     admin.add_view(ModelView(User, db.session))
