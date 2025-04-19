@@ -3,6 +3,7 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_admin import Admin
 from flask_admin.contrib.sqla import ModelView
 from flask_login import LoginManager
+from flask_migrate import Migrate  # ✅ NEW IMPORT
 import os
 
 # Initialize extensions
@@ -16,19 +17,20 @@ def create_app():
     # Secret key for session management
     app.config['SECRET_KEY'] = 'your_secret_key_here'
 
-    # Database configuration: Render Postgres URL from environment variable
+    # Database configuration
     app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv(
-        'DATABASE_URL',  # Retrieves the DATABASE_URL environment variable
-        'sqlite:///pawpal.db')  # Fallback to SQLite if DATABASE_URL isn't set
-    
+        'DATABASE_URL',
+        'sqlite:///pawpal.db'
+    )
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
     # Initialize extensions
     db.init_app(app)
+    migrate = Migrate(app, db)  # ✅ ADD THIS
     admin.init_app(app)
     login_manager.init_app(app)
 
-    # Import models here (avoid circular imports)
+    # Import models
     from app.models import User, Product, Toy, HealthyFood
 
     @login_manager.user_loader
@@ -51,4 +53,3 @@ def create_app():
     admin.add_view(ModelView(Product, db.session))
 
     return app
-
