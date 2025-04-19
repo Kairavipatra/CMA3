@@ -45,31 +45,6 @@ from app import db
 
 auth_bp = Blueprint('auth', __name__, url_prefix='/auth')
 
-
-@auth_bp.route('/signup', methods=['GET', 'POST'])
-def signup():
-    if request.method == 'POST':
-        username = request.form['username']
-        password = request.form['password']
-
-        # Check if username already exists
-        user = User.query.filter_by(username=username).first()
-        if user:
-            flash('Username already exists.', 'error')
-            return redirect(url_for('auth.signup'))
-
-        # Create new user with hashed password
-        hashed_password = generate_password_hash(password)
-        new_user = User(username=username, password=hashed_password)
-        db.session.add(new_user)
-        db.session.commit()
-
-        flash('Sign-up successful! Please log in.', 'success')
-        return redirect(url_for('auth.login'))
-
-    return render_template('index.html')
-
-
 @auth_bp.route('/signup', methods=['GET', 'POST'])
 def signup():
     if request.method == 'POST':
