@@ -4,7 +4,7 @@ from flask_admin import Admin
 from flask_admin.contrib.sqla import ModelView
 from flask_login import LoginManager
 from flask_migrate import Migrate  # ✅ NEW IMPORT
-import os
+from config import Config  # Import Config class
 
 # Initialize extensions
 db = SQLAlchemy()
@@ -14,15 +14,8 @@ login_manager = LoginManager()
 def create_app():
     app = Flask(__name__)
 
-    # Secret key for session management
-    app.config['SECRET_KEY'] = 'your_secret_key_here'
-
-    # Database configuration
-    app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv(
-        'DATABASE_URL',
-        'sqlite:///pawpal.db'
-    )
-    app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+    # Load configuration from Config class
+    app.config.from_object(Config)
 
     # Initialize extensions
     db.init_app(app)
