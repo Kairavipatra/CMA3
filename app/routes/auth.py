@@ -70,21 +70,29 @@ def signup():
     return render_template('index.html')
 
 
-@auth_bp.route('/login', methods=['GET', 'POST'])
-def login():
+@auth_bp.route('/signup', methods=['GET', 'POST'])
+def signup():
     if request.method == 'POST':
-        username = request.form['username']
-        password = request.form['password']
+        try:
+            username = request.form['username']
+            password = request.form['password']
 
-        user = User.query.filter_by(username=username).first()
-        if user and check_password_hash(user.password, password):
-            login_user(user)
-            flash('Login successful!', 'success')
-            next_page = request.args.get('next')
-            return redirect(next_page or url_for('app.home'))  # Change 'main.home' to your home route's endpoint
+            user = User.query.filter_by(username=username).first()
+            if user:
+                flash('Username already exists.', 'error')
+                return redirect(url_for('auth.signup'))
 
-        flash('Invalid credentials.', 'error')
-        return redirect(url_for('auth.login'))
+            hashed_password = generate_password_hash(password)
+            new_user = User(username=username, password=hashed_password)
+            db.session.add(new_user)
+            db.session.commit()
+
+            flash('Sign-up successful! Please log in.', 'success')
+            return redirect(url_for('auth.login'))
+        except Exception as e:
+            print(f"Error during signup: {e}")  # Or log it
+            flash("Something went wrong during signup.", "error")
+            return redirect(url_for('auth.signup'))
 
     return render_template('index.html')
 
