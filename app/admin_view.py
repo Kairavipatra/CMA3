@@ -51,7 +51,7 @@ def create_app():
     app.config['SECRET_KEY'] = 'your_secret_key_here'
 
     # Database Config (PostgreSQL for deployment, SQLite for fallback)
-    app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv('DATABASE_URL', 'sqlite:///pawpal.db')
+    app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv('DATABASE_URL')
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
     # Initialize extensions
