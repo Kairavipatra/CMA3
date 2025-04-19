@@ -46,6 +46,10 @@ def toys():
 def vet():
     return render_template('vet.html')
 
+@app_bp.route('/foster-care.html')
+def foster_care():
+    return render_template('foster-care.html')
+
 # ✅ Create the Flask app
 app = Flask(__name__)
 app.config.from_object('config.Config')  # Make sure your config points to PostgreSQL
