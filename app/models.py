@@ -63,3 +63,12 @@ class HealthyFood(db.Model):
 
     def __repr__(self):
         return f'<HealthyFood {self.name}>'
+class VeterinaryClinic(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(100), nullable=False)
+    location = db.Column(db.String(200), nullable=False)
+    specialties = db.Column(db.String(200), nullable=False)
+    map_link = db.Column(db.String(255), nullable=False)
+
+    def __repr__(self):
+        return f'<VeterinaryClinic {self.name}>'
