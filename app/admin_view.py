@@ -16,62 +16,65 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_admin import Admin, AdminIndexView
 from flask_admin.contrib.sqla import ModelView
 from flask_login import LoginManager, current_user
+from flask_migrate import Migrate  # Optional: for handling migrations
 import os
 
-# Initialize globally
+# Initialize extensions
 db = SQLAlchemy()
+login_manager = LoginManager()
 admin = Admin(name='PawPal Admin', template_mode='bootstrap3')
 
-login_manager = LoginManager()
-login_manager.login_view = 'auth.login'  # Where to redirect if user is not logged in
 
-# Protect Admin Panel with MyAdminIndexView
+# Custom Admin Home View (restrict access to logged-in users)
 class MyAdminIndexView(AdminIndexView):
     def is_accessible(self):
-        return current_user.is_authenticated  # Only authenticated users can access the admin panel
+        return current_user.is_authenticated
 
     def inaccessible_callback(self, name, **kwargs):
-        return redirect(url_for('auth.login', next=request.url))  # Redirect to login with next parameter
+        return redirect(url_for('auth.login', next=request.url))
 
 
-# Secure ModelView for Admin Views
+# Protect individual model views
 class SecureModelView(ModelView):
     def is_accessible(self):
-        return current_user.is_authenticated  # Ensure only authenticated users can access the model views
+        return current_user.is_authenticated
 
     def inaccessible_callback(self, name, **kwargs):
-        return redirect(url_for('auth.login', next=request.url))  # Redirect to login with next parameter
+        return redirect(url_for('auth.login', next=request.url))
 
 
 def create_app():
     app = Flask(__name__)
-
+    
+    # Secret Key
     app.config['SECRET_KEY'] = 'your_secret_key_here'
-    
-    # Use environment variable for PostgreSQL (for Render or local setup)
-    app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv('DATABASE_URL', 'sqlite:///pawpal.db')  # Fallback to SQLite if not set
-    
+
+    # Database Config (PostgreSQL for deployment, SQLite for fallback)
+    app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv('DATABASE_URL', 'sqlite:///pawpal.db')
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
+    # Initialize extensions
     db.init_app(app)
     login_manager.init_app(app)
+    Migrate(app, db)  # Optional: only if using Flask-Migrate for migrations
 
-    # Setup User Loader for Flask-Login
-    from app.models import User  # Assuming User model exists
-
+    # User loader for Flask-Login
+    from app.models import User  # Avoid circular imports
     @login_manager.user_loader
     def load_user(user_id):
-        return User.query.get(int(user_id))  # Load user from the database
+        return User.query.get(int(user_id))
 
-    # Initialize Admin with secure view (Admin Index View)
+    # Initialize Flask-Admin with protected views
     secure_admin = Admin(app, name='PawPal Admin', template_mode='bootstrap3', index_view=MyAdminIndexView())
-    
-    # Add views for User and Product models (secure with SecureModelView)
-    from app.models import Product  # Assuming Product model exists
+
+    # Register models with admin
+    from app.models import Product, Toy, HealthyFood
     secure_admin.add_view(SecureModelView(User, db.session))
     secure_admin.add_view(SecureModelView(Product, db.session))
+    secure_admin.add_view(SecureModelView(Toy, db.session))
+    secure_admin.add_view(SecureModelView(HealthyFood, db.session))
 
-    # Register all blueprints for other parts of the app (auth, products, etc.)
+    # Register blueprints
     from app.routes import app as app_routes
     from app.routes import auth, products, appointments, dog_walking, toys
 
@@ -83,4 +86,5 @@ def create_app():
     app.register_blueprint(toys.toys_bp)
 
     return app
+
 
