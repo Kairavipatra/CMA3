@@ -16,6 +16,7 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_admin import Admin, AdminIndexView
 from flask_admin.contrib.sqla import ModelView
 from flask_login import LoginManager, current_user
+import os
 
 # Initialize globally
 db = SQLAlchemy()
@@ -46,7 +47,10 @@ def create_app():
     app = Flask(__name__)
 
     app.config['SECRET_KEY'] = 'your_secret_key_here'
-    app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///pawpal.db'  # Adjust the DB URI accordingly
+    
+    # Use environment variable for PostgreSQL (for Render or local setup)
+    app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv('DATABASE_URL', 'sqlite:///pawpal.db')  # Fallback to SQLite if not set
+    
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
     db.init_app(app)
@@ -79,3 +83,4 @@ def create_app():
     app.register_blueprint(toys.toys_bp)
 
     return app
+
