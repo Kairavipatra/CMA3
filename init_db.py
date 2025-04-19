@@ -1,5 +1,5 @@
 from app import create_app, db
-from app.models import Product, User
+from app.models import Product, User, VeterinaryClinic
 from sqlalchemy.exc import SQLAlchemyError
 
 app = create_app()
@@ -80,7 +80,29 @@ with app.app_context():
                 'category': 'toys'
             }
         ]
+        clinic1 = VeterinaryClinic(
+        name="Airoli Pet Clinic",
+        location="Airoli, Navi Mumbai",
+        specialties="General Check-ups, Vaccinations, Surgery",
+        map_link="https://goo.gl/maps/xyz123"
+        )
 
+        clinic2 = VeterinaryClinic(
+        name="Animal Care Clinic",
+        location="Airoli, Navi Mumbai",
+        specialties="Emergency Care, Pet Dentistry",
+        map_link="https://goo.gl/maps/abc456"
+        )
+
+        clinic3 = VeterinaryClinic(
+        name="Healthy Paws Veterinary",
+        location="Airoli, Navi Mumbai",
+        specialties="Pet Vaccinations, Grooming Services",
+        map_link="https://goo.gl/maps/def789"
+        )
+
+        db.session.add_all([clinic1, clinic2, clinic3])
+        db.session.commit()
         # Insert food data only if none exists
         if not Product.query.filter_by(category='food').first():
             db.session.bulk_save_objects([Product(**data) for data in food_data])
