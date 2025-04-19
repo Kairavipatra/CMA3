@@ -46,5 +46,9 @@ def vet():
 app = Flask(__name__)
 app.register_blueprint(app_bp)
 if __name__ == '__main__':
+    with app.app_context():
+        db.create_all()
     app.run(debug=True)
+    
+
 
