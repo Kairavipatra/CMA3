@@ -7,3 +7,4 @@ flask-admin==1.5.8
 jinja2==3.0.0
 SQLAlchemy==1.4.41
 flask-login
+Flask-Migrate>=4.0.5
