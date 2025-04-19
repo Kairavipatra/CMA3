@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Foster Care - PawPal</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background-color: #fff8f0;
+    }
+
+    main {
+      background-image: url('image3.jpg'); /* Replace with correct path */
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-position: center;
+      padding: 3em 2em;
+    }
+
+    .foster-section {
+      padding: 3em 1em;
+      text-align: center;
+    }
+
+    .foster-card {
+      background-color: #fef8f4;
+      border-radius: 12px;
+      padding: 2em;
+      margin: 1.5em auto;
+      max-width: 850px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .foster-card img {
+      width: 100%;
+      border-radius: 10px;
+      margin-bottom: 1em;
+    }
+
+    .form-section {
+      background-color: #fffaf0;
+      padding: 2em;
+      border-radius: 12px;
+      margin-top: 2em;
+    }
+
+    .form-section input,
+    .form-section select,
+    .form-section textarea {
+      padding: 0.8em;
+      width: 100%;
+      margin: 0.6em 0;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+    }
+
+    iframe {
+      max-width: 100%;
+      border-radius: 10px;
+      height: 360px;
+    }
+
+    .hero {
+      background: url('https://pattersonvetcontentmedia.azureedge.net/VetContent/getattachment/6c6f2e0a-dd62-4c46-b9a4-2aa9eb3e7f68/Jarvinen_AlexandriaVA_066.jpg/?rev=-1763780186') no-repeat center center/cover;
+      height: 60vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      color: #fff;
+      text-align: center;
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.4); /* Dark overlay */
+      z-index: 0;
+      border-bottom: 5px solid #ffa94d;
+    }
+
+    .hero-overlay {
+      position: relative;
+      z-index: 1;
+      padding: 2rem;
+    }
+
+    .hero h2 {
+      font-size: 3rem;
+      font-weight: bold;
+      margin-bottom: 0.5rem;
+      text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.4);
+    }
+
+    .hero p {
+      font-size: 1.25rem;
+      text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.3);
+    }
+
+    .cta-button {
+      margin-top: 1rem;
+      display: inline-block;
+      padding: 0.75rem 1.5rem;
+      background-color: #ffa94d;
+      color: #fff;
+      font-weight: bold;
+      border-radius: 0.5rem;
+      text-decoration: none;
+      transition: background-color 0.3s ease;
+    }
+
+    .cta-button:hover {
+      background-color: #ff922b;
+    }
+
+    .nearby-fosters {
+      padding: 2em;
+      background-color: #ffe4d9;
+      border-radius: 12px;
+      margin-top: 3em;
+    }
+
+    .nearby-fosters h3 {
+      font-size: 2rem;
+      color: #ff7a26;
+      margin-bottom: 1em;
+    }
+
+    .foster-list {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 2em;
+    }
+
+    .foster-item {
+      background-color: #fef8f4;
+      border-radius: 10px;
+      padding: 1.5em;
+      text-align: center;
+      max-width: 250px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .foster-item h4 {
+      color: #ff7a26;
+      margin-bottom: 0.5em;
+    }
+
+    .foster-item p {
+      margin-bottom: 1em;
+    }
+
+    .foster-item a {
+      color: #ff7a26;
+      font-weight: bold;
+      text-decoration: none;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>PawPal</h1>
+    <nav>
+      <a href="/">Home</a>
+      <a href="shop.html">Shop</a>
+      <a href="services.html">Services</a>
+      <a href="blog.html">Blog</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <div class="hero-overlay">
+      <h2>Foster Care Services in Airoli</h2>
+      <p>Your pet’s future is brighter with our loving foster care services. Let’s find a safe home for your pet.</p>
+      <a href="contact.html" class="cta-button">Make an Appointment</a>
+    </div>
+  </section>
+
+  <main class="foster-section">
+    <div class="foster-card" data-aos="fade-up">
+      <img src="https://static.vecteezy.com/system/resources/thumbnails/024/653/630/small_2x/charming-pampered-pets-play-side-by-side-looking-alert-generated-by-ai-free-photo.jpg" alt="Foster Care">
+      <h3>Foster Care Services in Airoli</h3>
+      <p>We provide loving homes for pets in need. Our network of foster caregivers ensures that pets receive attention, care, and love while waiting for their forever homes.</p>
+    </div>
+
+    <div class="foster-card form-section" data-aos="fade-up" data-aos-delay="200">
+      <h3>Book a Foster Care Appointment</h3>
+      <form>
+        <input type="text" placeholder="Your Name" required />
+        <input type="email" placeholder="Email Address" required />
+        <input type="text" placeholder="Pet's Name" required />
+        <select required>
+          <option value="">Select Pet Type</option>
+          <option>Dog</option>
+          <option>Cat</option>
+          <option>Other</option>
+        </select>
+        <input type="date" required />
+        <textarea placeholder="Reason for Foster Care" rows="4" required></textarea>
+        <button type="submit">Book Now</button>
+      </form>
+    </div>
+
+    <!-- Nearby Foster Care Providers Section -->
+    <div class="nearby-fosters" data-aos="fade-up">
+      <h3>Nearby Foster Care Providers in Airoli</h3>
+      <p>Find nearby foster homes available for your pets in the Airoli region. These foster homes offer love, care, and attention to pets in need while they await their forever homes.</p>
+      <div class="foster-list">
+        <div class="foster-item">
+          <h4>Happy Paws Airoli</h4>
+          <p>Providing temporary homes for dogs and cats. Experienced and loving foster care providers.</p>
+          <a href="contact.html">Contact</a>
+        </div>
+
+        <div class="foster-item">
+          <h4>Little Hearts Animal Care</h4>
+          <p>We specialize in caring for rescued pets. Offering compassionate foster care for all types of pets.</p>
+          <a href="contact.html">Contact</a>
+        </div>
+
+        <div class="foster-item">
+          <h4>Pets Haven</h4>
+          <p>Providing a safe space for pets looking for their forever homes. Available for short-term and long-term foster care.</p>
+          <a href="contact.html">Contact</a>
+        </div>
+      </div>
+    </div>
+
+  </main>
+
+  <footer>
+    <p>&copy; 2025 PawPal. All rights reserved.</p>
+  </footer>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+  <script>
+    AOS.init();
+  </script>
+</body>
+</html>
